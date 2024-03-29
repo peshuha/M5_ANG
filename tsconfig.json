@@ -2,6 +2,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "lib-auth": [
+        "./dist/lib-auth"
+      ],
+      "lib-common": [
+        "./dist/lib-common"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
