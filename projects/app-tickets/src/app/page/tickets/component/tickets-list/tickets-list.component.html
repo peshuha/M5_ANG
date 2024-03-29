@@ -1,0 +1,43 @@
+<ng-template [ngIf]="!tickets" [ngIfElse]="page">
+  <p>In loading...</p>
+</ng-template>
+<ng-template #page>
+  <div class="panel">
+    <p>Всего элементов: {{info.childElementCount}}, Текущий: {{ddir.GetItemNumber()}}</p>
+    <div class="navigator">
+      <button (click)="ddir.NavigateLeft()"><</button>
+      <button (click)="ddir.NavigateUp()">^</button>
+      <button (click)="ddir.NavigateRight()">></button>
+      <button (click)="ddir.NavigateDown()">v</button>
+     </div>
+  </div>
+  <div
+    appItemsSelector
+    [itemsclass]="'ticket'"
+    [toggleclass]="'active'"
+    [activator]="elActivator"
+    [itemid]="'itemid'"
+    [initindex]="true"
+    (OnAfterInitialize)="OnItemSelectorInitialize()"
+
+    #ddir="appItemsSelector"
+    #diSelector
+    #info
+    class="container"
+  >
+    <div
+      *ngFor="let ticket of tickets | tours: (tourFilter | async)"
+
+      (dblclick)="OnDoubleClick(ticket)"
+      [attr.itemid]="ticket.id"
+      class="ticket"
+    >
+      <p>{{ticket.name}}</p>
+      <img src="/assets/img/{{ticket.img}}" alt="" height="150px" width="200px">
+    </div>
+  </div>
+
+</ng-template>
+
+
+
